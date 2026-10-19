@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 /**
  * Redux slice for the Paradise Nursery shopping cart.
- * Each item keeps quantity and unit price so totals can be derived.
+ * Three reducer functions: addItem(), removeItem(), updateQuantity().
  */
 const cartSlice = createSlice({
   name: "cart",
@@ -10,7 +10,7 @@ const cartSlice = createSlice({
     items: [],
   },
   reducers: {
-    add(state, action) {
+    addItem(state, action) {
       const product = action.payload;
       const existing = state.items.find((item) => item.id === product.id);
       if (existing) {
@@ -19,24 +19,22 @@ const cartSlice = createSlice({
         state.items.push({ ...product, quantity: 1 });
       }
     },
-    increaseQuantity(state, action) {
-      const item = state.items.find((i) => i.id === action.payload.id);
-      if (item) item.quantity += 1;
+    removeItem(state, action) {
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
-    decreaseQuantity(state, action) {
-      const item = state.items.find((i) => i.id === action.payload.id);
-      if (item && item.quantity > 1) item.quantity -= 1;
-    },
-    remove(state, action) {
-      state.items = state.items.filter((i) => i.id !== action.payload.id);
-    },
-    clear(state) {
-      state.items = [];
+    updateQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      const item = state.items.find((i) => i.id === id);
+      if (!item) return;
+      if (quantity <= 0) {
+        state.items = state.items.filter((i) => i.id !== id);
+      } else {
+        item.quantity = quantity;
+      }
     },
   },
 });
 
-export const { add, increaseQuantity, decreaseQuantity, remove, clear } =
-  cartSlice.actions;
+export const { addItem, removeItem, updateQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;

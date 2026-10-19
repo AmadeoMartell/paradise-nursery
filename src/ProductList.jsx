@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { add } from "./CartSlice";
+import { addItem } from "./CartSlice";
 
 /**
  * Product listing for Paradise Nursery.
  * Plants are grouped into three categories, each with at least six unique
- * houseplants (thumbnail, name, price). "Add to Cart" adds the product to the
- * cart, disables itself once the product has been added, and the navbar cart
- * icon count grows with every item added.
+ * houseplants (thumbnail, name, price). "Add to Cart" dispatches addItem(),
+ * disables itself once the product has been added, and the navbar cart icon
+ * count grows with every item added.
  */
 const PLANTS = [
   {
@@ -67,7 +67,7 @@ export default function ProductList() {
               <button
                 className="add-to-cart"
                 disabled={isAdded(plant.id)}
-                onClick={() => dispatch(add(plant))}
+                onClick={() => dispatch(addItem(plant))}
               >
                 {isAdded(plant.id) ? "Added to Cart" : "Add to Cart"}
               </button>

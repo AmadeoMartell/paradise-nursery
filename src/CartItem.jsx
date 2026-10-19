@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { increaseQuantity, decreaseQuantity, remove } from "./CartSlice";
+import { addItem, removeItem, updateQuantity } from "./CartSlice";
 
 /**
  * Shopping Cart page for Paradise Nursery.
  * Shows the total cart amount, the total cost per plant, thumbnails, names,
- * unit prices, quantity controls, delete buttons, a checkout button that
- * reports "Coming Soon", and a continue shopping link back to the listing.
+ * unit prices, increase/decrease quantity buttons (updateQuantity()),
+ * delete buttons (removeItem()), a checkout button that reports "Coming Soon"
+ * and a continue shopping link back to the product listing.
  */
 export default function CartItem() {
   const dispatch = useDispatch();
@@ -38,28 +39,29 @@ export default function CartItem() {
           <div className="quantity-controls">
             <button
               className="increase"
-              onClick={() => dispatch(increaseQuantity({ id: item.id }))}
+              onClick={() =>
+                dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))
+              }
             >
               +
             </button>
             <span className="quantity">{item.quantity}</span>
             <button
               className="decrease"
-              onClick={() => dispatch(decreaseQuantity({ id: item.id }))}
+              onClick={() =>
+                dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
+              }
             >
               −
             </button>
-            <button className="delete" onClick={() => dispatch(remove({ id: item.id }))}>
+            <button className="delete" onClick={() => dispatch(removeItem({ id: item.id }))}>
               Delete
             </button>
           </div>
         </div>
       ))}
 
-      <button
-        className="checkout"
-        onClick={() => alert("Checkout is Coming Soon!")}
-      >
+      <button className="checkout" onClick={() => alert("Checkout is Coming Soon!")}>
         Checkout
       </button>
       <Link to="/plants" className="continue-shopping">
