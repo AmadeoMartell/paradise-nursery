@@ -1,0 +1,94 @@
+/* Background image for the Paradise Nursery landing page */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1f3d2b;
+}
+
+.app {
+  min-height: 100vh;
+  background-image: url("./images/paradise-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: rgba(31, 61, 43, 0.85);
+  color: #ffffff;
+}
+
+.navbar-links a {
+  color: #ffffff;
+  margin-right: 18px;
+  text-decoration: none;
+}
+
+.cart-icon {
+  font-weight: 700;
+}
+
+.landing {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.get-started {
+  background: #2f7d5b;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.product-list,
+.cart-page {
+  padding: 24px;
+}
+
+.category h2 {
+  border-bottom: 2px solid #2f7d5b;
+  padding-bottom: 6px;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #d7e6dd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #ffffff;
+}
+
+.product img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #d7e6dd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #ffffff;
+}
+
+.total-amount {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 16px 0;
+}
